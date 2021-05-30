@@ -1,0 +1,48 @@
+/*!
+ 
+  * Main Css
+  Author : khokon Ahmed
+  copy-right: 2018
+  softwarefirmbd.com
+  
+ */
+
+
+@media (min-width: 360px) and (max-width: 640px){
+     .container {
+         max-width: 1170px;
+     }   
+     .img-thumbnail{
+          margin:0 auto;
+          max-height: 1000px!important;
+          width: 925px;
+     }
+     .Version-bar a {
+    font-size: 12px;
+}
+
+
+.header-tp-menu p{
+     display: none;
+}
+.home-logo img {
+    width: 65%;
+    margin-left: 18%;
+}
+.topbar-three .header-socile ul {
+  display: none;
+}
+.input-group .form-control { 
+    margin-left: -36%; 
+}
+.photo_gallery .gallery_img_style{
+     margin-top: 5%;
+}
+.site-address{text-align: center;}
+.recent_category{width: 50%;}
+.recent-post{width: 50%;}
+.footer-logo img{
+    width: 65%;
+    margin-left: 17%;
+}
+}
