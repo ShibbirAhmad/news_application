@@ -25,6 +25,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/font-awesome.min.css')}}">
   <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/custom.css')}}">
    <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/responsive.css')}}">
 
    <!-- Facebook Like And Shere  -->

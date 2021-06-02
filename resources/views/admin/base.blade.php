@@ -9,43 +9,43 @@
     <title>Mohadesh.com</title>
     <!-- GLOBAL MAINLY STYLES-->
 
-    <link href="{{asset('public/admin/assets/')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/')}}/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/')}}/vendors/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/DataTables/datatables.min.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-    <link href="{{asset('public/admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
 
      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!-- THEME STYLES-->
     <link href="https://fonts.maateen.me/adorsho-lipi/font.css" rel="stylesheet">
-    <link href="{{asset('public/admin/assets/')}}/css/main.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/css/main.min.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
-   
-    <script src="{{asset('public/admin/assets/')}}/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-    
+
+    <script src="{{asset('admin/assets/')}}/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
     <!--<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>-->
-        <script src="{{asset('public/admin/assets/')}}/vendors/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script src="{{asset('admin/assets/')}}/vendors/ckeditor/ckeditor.js" type="text/javascript"></script>
 
 
 
-    <script src="{{asset('public/admin/assets/')}}/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL PLUGINS-->
-    <script src="{{asset('public/admin/assets/')}}/vendors/chart.js/dist/Chart.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-us-aea-en.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/chart.js/dist/Chart.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-us-aea-en.js" type="text/javascript"></script>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
-      <script src="{{asset('public/admin/assets/')}}/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+      <script src="{{asset('admin/assets/')}}/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
-    <script src="{{asset('public/admin/assets/')}}/js/app.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
 
 
@@ -81,11 +81,11 @@
                 <!-- END TOP-LEFT TOOLBAR-->
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
-                   
-                   
+
+
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                            <img src="{{asset('public/admin/assets/')}}/img/admin-avatar.png" />
+                            <img src="{{asset('admin/assets/')}}/img/admin-avatar.png" />
                             <span></span>{{ Auth::user()->name }}<i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{url('user-profile/'.Auth::user()->name)}}"><i class="fa fa-user"></i>Profile</a>
@@ -104,16 +104,16 @@
         </header>
         <!-- END HEADER-->
         <!-- START SIDEBAR-->
-       
+
         @include('admin.home.sidebar')
 
         <!-- END SIDEBAR-->
         <div class="content-wrapper">
             <!-- START PAGE CONTENT-->
             <div class="page-content fade-in-up">
-               
+
                @yield('content')
-               
+
             </div>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
@@ -132,11 +132,11 @@
     </div>
     <!-- END PAGA BACKDROPS-->
     <!-- CORE PLUGINS-->
-    
+
 
 
     @stack('scripts')
-    
+
     <script>
 @if(Session::has('message'))
   var type = "{{ Session::get('alert-type', 'info') }}";
@@ -193,7 +193,7 @@
                   filebrowseUploadMethod:'form'
             });
         </script>
-      
+
 </body>
 
 </html>

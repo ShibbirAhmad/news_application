@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>Welcome To Mohasagor News</title>
     <!-- GLOBAL MAINLY STYLES-->
-    <link href="{{asset('public/admin/assets/')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/')}}/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
     <!-- THEME STYLES-->
-    <link href="{{asset('public/admin/assets/')}}/css/main.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/css/main.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
-    <link href="{{asset('public/admin/assets/')}}/css/pages/auth-light.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/')}}/css/pages/auth-light.css" rel="stylesheet" />
 </head>
 
 <body class="bg-silver-300">
@@ -36,7 +36,7 @@
                                 @endif
                 </div>
 
-              
+
             </div>
             <div class="form-group">
                 <div class="input-group-icon right">
@@ -49,9 +49,9 @@
                                     </span>
                                 @endif
                 </div>
-                 
+
             </div>
-          
+
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Login</button>
             </div>
@@ -77,13 +77,13 @@
     </div>
     <!-- END PAGA BACKDROPS-->
     <!-- CORE PLUGINS -->
-    <script src="{{asset('public/admin/assets/')}}/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
-    <script src="{{asset('public/admin/assets/')}}/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL PLUGINS -->
-    <script src="{{asset('public/admin/assets/')}}/vendors/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}/vendors/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
-    <script src="{{asset('public/admin/assets/')}}//js/app.js" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/')}}//js/app.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
         $(function() {

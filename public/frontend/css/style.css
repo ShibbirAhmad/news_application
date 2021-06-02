@@ -1,10 +1,10 @@
 /*!
- 
+
   * Main Css
   Author : khokon Ahmed
   copy-right: 2018
   softwarefirmbd.com
-  
+
  */
 
 
@@ -25,7 +25,7 @@ body {
      overflow: hidden !important;
      width: 100%;
      height: 100%;
-     
+
 }
  .navbar {
      top: 5px;
@@ -76,7 +76,7 @@ body {
   text-align: center;
   transition: all 0.8s ease 0s;
 
-  
+
 }*/
 
 .wrold{
@@ -88,7 +88,7 @@ body {
      border-bottom: 4px solid #0C889E;
 }
 .wrold:last-child{
-  border-bottom: 0px solid #0C889E;   
+  border-bottom: 0px solid #0C889E;
 }
 .newstiker {
      background: #FFF none repeat scroll 0 0;
@@ -319,7 +319,7 @@ marquee {
  .nav.nav-pills li a {
      color: #FFF !important;
 }
- 
+
  .nav > li > a {
      display: block;
      padding: 6px 14px;
@@ -341,11 +341,11 @@ marquee {
      font-size: 16px;
      text-align: center;
      transition: 700ms easc;
-     border-bottom: 4px solid #fff; 
+
 
 }
-.navbar-style>li:hover{ 
-     border-bottom: 4px solid #0C889E; 
+.navbar-style>li:hover{
+     border-bottom: 4px solid #0C889E;
      transition: 700ms easc;
 
 }
@@ -728,10 +728,10 @@ marquee {
      height: 38px;
 }
 .content_news p a {
-     color: #fff;    
+     color: #fff;
 }
 .content_news p a:hover {
-     color: yellow !important;  
+     color: yellow !important;
 }
 .desing a{}
 .desing a:hover{
@@ -917,7 +917,7 @@ marquee {
      padding: 15px;
 }
  .greenlightfoot {
-     
+
      min-height: 40px;
      padding: 66px 0;
 }
@@ -1112,7 +1112,7 @@ marquee {
     border-radius: 25px;
     text-align: center;
     color: #fff;
-    
+
 
 }
 .gotoup i{font-size: 38px;}
@@ -1124,7 +1124,7 @@ marquee {
 
 
 
- 
+
 
 
 

@@ -20,11 +20,19 @@ Route::get('/moshadesh/news/{id}', 'frontend\NewsController@All_newspost');
 Route::get('/news/moshadesh/{id}', 'frontend\NewsController@Menu_news');
 
 
+//end user login register
+Route::get('/user/login',function(){
+     return view('frontend.home.login') ;
+})->name('end_user_login');
+
+Route::get('/user/register',function(){
+     return view('frontend.home.register') ;
+})->name('end_user_register');
 
 
 
 
-// Back Route Here 
+// Back Route Here
 
 Auth::routes();
 

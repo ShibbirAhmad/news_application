@@ -8,7 +8,7 @@ use Session;
 use DB;
 class WelcomeController extends Controller
 {
-    
+
 
     public function index()
     {
@@ -136,10 +136,10 @@ class WelcomeController extends Controller
                  ->orderBy('post_id', 'DESC')
                  ->get();
 
-    	  
+
 
       /************* 	politics Head ********************/
-      		 
+
     	$politics_head = DB::table('posts')
     			 ->select('*')
     			 ->where('cat_id', 2)
@@ -164,7 +164,7 @@ class WelcomeController extends Controller
 
 
     /**************** International ********************/
-   	
+
     $international_head = DB::table('posts')
     			 ->select('*')
     			 ->where('cat_id', 3)
@@ -184,10 +184,10 @@ class WelcomeController extends Controller
     			 ->orderBy('post_id', 'DESC')
     			 ->get();
 
-  /**************** International End ********************/			 
+  /**************** International End ********************/
 
 
-   
+
 
 
      /************************ excluive ***************************/
@@ -258,7 +258,7 @@ class WelcomeController extends Controller
                      ->get();
 
 
-  /******************* Featured  News ************************************/   
+  /******************* Featured  News ************************************/
 
     $featured_head = DB::table('posts')
                      ->select('*')
@@ -268,7 +268,7 @@ class WelcomeController extends Controller
                      ->orderBy('post_id', 'DESC')
                      ->get();
 
-/******************* Entertainment News ************************************/ 
+/******************* Entertainment News ************************************/
 
    $entertainment_head = DB::table('posts')
                      ->select('*')
@@ -279,7 +279,7 @@ class WelcomeController extends Controller
                      ->orderBy('post_id', 'DESC')
                      ->get();
 
-    $entertainment_position =  [2, 3, 4, 5, 6, 7]; 
+    $entertainment_position =  [2, 3, 4, 5, 6, 7];
 
     $entertainment_sub = DB::table('posts')
                      ->select('*')
@@ -290,8 +290,8 @@ class WelcomeController extends Controller
                      ->orderBy('post_id', 'DESC')
                      ->get();
 
- 
-/******************* Lifestyle News ************************************/ 
+
+/******************* Lifestyle News ************************************/
 
        $lifestyle_head = DB::table('posts')
                      ->select('*')
@@ -302,7 +302,7 @@ class WelcomeController extends Controller
                      ->get();
 
 
- /******************* Features News ************************************/ 
+ /******************* Features News ************************************/
 
        $features_head = DB::table('posts')
                      ->select('*')
@@ -322,7 +322,7 @@ class WelcomeController extends Controller
                 ->get();
 
 
- /******************* Diverse news ************************************/ 
+ /******************* Diverse news ************************************/
 
    $diversenews_head = DB::table('posts')
                      ->select('*')
@@ -332,7 +332,7 @@ class WelcomeController extends Controller
                      ->take(1)
                      ->orderBy('post_id', 'DESC')
                      ->get();
-    
+
     $diversenews_position = [2, 3, 4, 5];
 
    $diversenews_sub = DB::table('posts')
@@ -345,8 +345,8 @@ class WelcomeController extends Controller
                      ->get();
 
 
-   /******************* Crime and corruption news ************************************/ 
-  
+   /******************* Crime and corruption news ************************************/
+
    $crimecorruption_head = DB::table('posts')
                      ->select('*')
                      ->where('cat_id', 13)
@@ -401,7 +401,7 @@ class WelcomeController extends Controller
                      ->orderBy('post_id', 'DESC')
                      ->get();
 
-          //$health_position = [2, 3, 4, 5]; 
+          //$health_position = [2, 3, 4, 5];
 
          $health_sub = DB::table('posts')
                      ->select('*')
@@ -411,10 +411,10 @@ class WelcomeController extends Controller
                      ->take(4)
                      ->orderBy('post_id', 'DESC')
                      ->get();
-                     
-       
-                     
-                     
+
+
+
+
         //  echo "<pre>";
         // print_r($health_sub);
 
@@ -439,7 +439,7 @@ class WelcomeController extends Controller
                 ->orderBy('cover_news', 'DESC')
                 ->take(1)
                 ->get();
-    
+
     /******************** Slider Option *******************/
 
     $sliders = DB::table('slider')->take(5)->orderBy('id', 'DESC')->get();
@@ -449,7 +449,23 @@ class WelcomeController extends Controller
 
 
 
-    	 return view('frontend.home.home', compact('nationals','politics', 'nationals_head', 'nationals_sub', 'politics_head', 'politics_sub', 'internationalbyid','international_head', 'international_sub', 'exclusivebyid', 'excluive_head', 'all_bangladesh', 'allbangladesh_head', 'allbangladesh_sub', 'job_newsbyid', 'jobnews_head', 'sportsbyid', 'sports_head', 'sports_sub', 'featured_news', 'featured_head', 'populars', 'latests', 'entertainment', 'entertainment_head', 'entertainment_sub', 'lifestyle', 'lifestyle_head', 'features', 'features_head', 'diverse_news', 'diversenews_head', 'diversenews_sub', 'crimecorruption', 'crimecorruption_head', 'crimecorruption_sub', 'information', 'information_head', 'information_sub', 'health', 'health_head', 'health_sub', 'topcat', 'top_sub', 'sliders', 'covernews', 'gallerys'));
+      //filtering latest top 3 news
+        $most_view_news=DB::table('posts')->orderBy('popular_news','desc')->take(3)->get();
+
+
+    	 return view('frontend.home.home', compact(['nationals',
+         'politics', 'nationals_head', 'nationals_sub', 'politics_head',
+         'politics_sub', 'internationalbyid','international_head',
+          'international_sub', 'exclusivebyid', 'excluive_head',
+          'all_bangladesh', 'allbangladesh_head', 'allbangladesh_sub',
+          'job_newsbyid', 'jobnews_head', 'sportsbyid', 'sports_head',
+           'sports_sub', 'featured_news', 'featured_head', 'populars', 'latests',
+           'entertainment', 'entertainment_head', 'entertainment_sub', 'lifestyle',
+            'lifestyle_head', 'features', 'features_head', 'diverse_news', 'diversenews_head',
+             'diversenews_sub', 'crimecorruption', 'crimecorruption_head',
+              'crimecorruption_sub', 'information', 'information_head',
+               'information_sub', 'health', 'health_head', 'health_sub',
+               'topcat', 'top_sub', 'sliders', 'covernews', 'gallerys','most_view_news']));
     }
 
     public function AnyCategoryname($id, $category_name)
@@ -468,9 +484,9 @@ class WelcomeController extends Controller
             if (!isset($allposts)) {
                 return Redirect('/');
             }else{
-                
+
     	$national_position =  [2, 3, 4, 5];
-        
+
     	$four_posts = DB::table('posts')
     			 ->leftJoin('categorys', 'posts.cat_id', '=', 'categorys.category_id')
     			 ->select('*', 'categorys.category_name')
@@ -502,7 +518,7 @@ class WelcomeController extends Controller
                  ->take(10)
                 ->get();
 
-       
+
 
         $relative_position = [1, 2, 3, 4, 5];
 
@@ -569,7 +585,7 @@ class WelcomeController extends Controller
           return view('frontend.home.post_search', compact('search', 'all_news', 'latests', 'populars'));
       }
         }
-      
+
     }
-    
+
 }

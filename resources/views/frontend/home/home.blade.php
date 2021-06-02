@@ -5,9 +5,19 @@
         <div class="row" style="margin-top: 20px;">
 
 
+
                 <div class="col-xl-9 col-lg-9 col-md-9 col-xs-12">
-                    <div class="card-area-one">
-      
+                    <div class="row">
+                       @foreach ($most_view_news as $post)
+                           <div class="col-md-4 col-sm-4">
+                           <a style="color:#000" href="{{url('/moshadesh/news/'.$post->post_id)}}">
+                              <img class="img-thumbnail" src="{{ asset($post->post_image) }}" alt="news image">
+                               <h4 class="top_news_heading"> {{ $post->post_title }} </h4>
+                               <p class="top_news_description"> {!!  str_limit($post->short_description,200) !!} </p>
+                             </a>
+                           </div>
+                       @endforeach
+
                     </div>
                 </div>
 
