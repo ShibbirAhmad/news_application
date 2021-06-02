@@ -31,7 +31,6 @@ Route::get('/user/register',function(){
 
 
 
-
 // Back Route Here
 
 Auth::routes();
@@ -41,12 +40,40 @@ Route::get('/user-profile/{id}', 'HomeController@Userprofile');
 Route::post('/profile-update/{id}', 'HomeController@Profile_update');
 
 
+Route::group([
+  'namespace' => 'Backend',
+  'middleware' => 'auth'
+],function (){
+
+     //adervertisement routes
+    Route::get('advertisement/list','AdvertisementController@index')->name('advertisement_list');
+    Route::post('advertisement/add','AdvertisementController@store')->name('advertisement_store');
+    Route::get('advertisement/edit/item/{id}','AdvertisementController@editItem')->name('advertisement_edit_item');
+    Route::get('advertisement/delete/item/{id}','AdvertisementController@deleteItem')->name('advertisement_delete');
+    Route::post('advertisement/update/{id}','AdvertisementController@udpate')->name('advertisement_update');
+
+
+     //sub category  routes
+    Route::get('sub_category/list','SubCategoryController@index')->name('sub_category_list');
+    Route::post('sub_category/add','SubCategoryController@store')->name('sub_category_store');
+    Route::get('sub_category/edit/item/{id}','SubCategoryController@editItem')->name('sub_category_edit_item');
+    Route::get('sub_category/delete/item/{id}','SubCategoryController@deleteItem')->name('sub_category_delete');
+    Route::post('sub_category/update/{id}','SubCategoryController@udpate')->name('sub_category_update');
+
+
+
+
+});
+
+
 /***************************** Category Route Here ******************************************/
 Route::get('/categorys', 'Category\CategoryController@Category_list')->name('categorys');
 Route::post('/insert-category', 'Category\CategoryController@Store_category');
 Route::get('/category/{id}/delete', 'Category\CategoryController@Delete_category');
 Route::get('/category-edit/{id}', 'Category\CategoryController@Edit_category');
 Route::post('/update-category', 'Category\CategoryController@Update_category');
+
+
 
 
 /********************** Post Route Here ***************************************************/

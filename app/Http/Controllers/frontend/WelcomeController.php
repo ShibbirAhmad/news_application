@@ -450,7 +450,7 @@ class WelcomeController extends Controller
 
 
       //filtering latest top 3 news
-        $most_view_news=DB::table('posts')->orderBy('popular_news','desc')->take(3)->get();
+        $most_view_news=DB::table('posts')->inRandomOrder()->take(3)->orderBy('popular_news','desc')->get();
 
 
     	 return view('frontend.home.home', compact(['nationals',

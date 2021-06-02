@@ -55,6 +55,28 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+  {{-- nav-bar-menu start hjere--}}
+       <div class="mega_menu_bar">
+         <i class="fa fa-times-circle menu_close_icon"></i>
+          <ul class="menu_list_c">
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+            <li> <a href="">   Top News </a> </li>
+          </ul>
+       </div>
+  {{-- nav-bar-menu end --}}
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-style">
 
@@ -102,7 +124,6 @@
             $catid = [1,2,3,4,5,6,7,8,9,10];
             $subcategory = DB::table('categorys')->where('cat_status', 1)->whereNotIn('category_id', $catid)->get();
             foreach ($subcategory as $v_sub) {
-
 
            ?>
         <a class="nav-link wrold" href="{{url('/moshadesh/category/'.$v_sub->category_id.'/'.$v_sub->category_name)}}">{{$v_sub->category_name}}</a>

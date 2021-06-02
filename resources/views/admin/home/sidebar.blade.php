@@ -13,7 +13,13 @@
                             <span class="nav-label">Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="active" href="{{route('advertisement_list')}}"><i class="sidebar-item-icon fa fa-list-alt"></i>
+                            <span class="nav-label">Advertisement</span>
+                    </a>
+                    </li>
                     <li class="heading">CATEGORY</li>
+
                     <li class = "{{ set_active(['categorys', Request::is('sub-categorys')]) }}">
 
                         <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
@@ -24,13 +30,13 @@
                                 <a class = "{{ set_active('categorys') }}" href="{{route('categorys')}}">Category List</a>
                             </li>
 
-                              <!-- <li>
-                             <a class = "{{ set_active('sub-categorys') }}" href="{{url('sub-categorys')}}">Sub-Categorys</a>
-                            </li> -->
+                        <li>
+                             <a class = "{{ set_active('sub-categorys') }}" href="{{  route('sub_category_list') }}">Sub-Categorys</a>
+                        </li>
 
                         </ul>
                     </li>
-                
+
                     <li class="{{ set_active(['posts'])}}">
 
                         <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
@@ -39,7 +45,7 @@
                             <li>
                                 <a class="{{ set_active('posts') }}" href="{{route('posts')}}">Post List</a>
                             </li>
-                        
+
                         </ul>
                     </li>
 
@@ -50,10 +56,10 @@
                             <li>
                                 <a class="{{ set_active('slider-list') }}" href="{{route('slider-list')}}">Slider List</a>
                             </li>
-                          
+
                         </ul>
                     </li>
-                       
+
 
                     <li class="heading">PAGES</li>
                     <li class="{{ set_active(['gallery-list'])}}">
@@ -63,7 +69,7 @@
                             <li>
                      <a class="{{ set_active(['gallery-list'])}}" href="{{route('gallery-list')}}">Gallery-List</a>
                             </li>
-                          
+
                         </ul>
                     </li>
 
@@ -74,7 +80,7 @@
                     </li>
                     <?php
                       if (Auth::user()->user_type == 1) { ?>
-                      
+
                     <li class="{{ set_active(['user-list'])}}">
                         <a href="javascript:;"><i class="sidebar-item-icon fa fa-file-text"></i>
                             <span class="nav-label">User Option</span><i class="fa fa-angle-left arrow"></i></a>
@@ -82,13 +88,13 @@
                             <li>
                                 <a class="{{ set_active(['user-list'])}}" href="{{route('user-list')}}">User List</a>
                             </li>
-                          
-                           
+
+
                         </ul>
                     </li>
                 <?php } ?>
-                    
-                    
+
+
                 </ul>
             </div>
         </nav>
