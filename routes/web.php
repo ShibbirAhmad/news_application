@@ -3,8 +3,7 @@
 
 /************************* Front End Route Here ***********************/
 
-
-
+use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('optimize:clear');
@@ -13,6 +12,7 @@ Route::get('/clear-cache', function() {
 
 Route::get('/', 'frontend\WelcomeController@index');
 Route::get('/news-search', 'frontend\WelcomeController@News_search');
+Route::get('count/advertise/click/{id}', 'frontend\AdvertiseClickCountController@advertiseClickCount');
 
 Route::get('/moshadesh/category/{category_id}/{category_name}', 'frontend\WelcomeController@AnyCategoryname');
 
@@ -21,15 +21,25 @@ Route::get('/news/moshadesh/{id}', 'frontend\NewsController@Menu_news');
 
 
 //end user login register
-Route::get('/user/login',function(){
+Route::get('blog/user/login',function(){
      return view('frontend.home.login') ;
 })->name('end_user_login');
 
-Route::get('/user/register',function(){
+Route::get('blog/user/register',function(){
      return view('frontend.home.register') ;
 })->name('end_user_register');
 
+Route::post('start/user/login','frontend\BlogUserController@login')->name('blog_user_login');
+Route::post('start/user/register','frontend\BlogUserController@register')->name('blog_user_register');
 
+
+Route::group([
+       'namespace' => 'frontend',
+       'middleware' => 'blog_user',
+],function(){
+
+     Route::get('blog/user/logout','BlogUserController@logout')->name('blog_user_logout');
+});
 
 // Back Route Here
 
@@ -58,7 +68,7 @@ Route::group([
     Route::post('sub_category/add','SubCategoryController@store')->name('sub_category_store');
     Route::get('sub_category/edit/item/{id}','SubCategoryController@editItem')->name('sub_category_edit_item');
     Route::get('sub_category/delete/item/{id}','SubCategoryController@deleteItem')->name('sub_category_delete');
-    Route::post('sub_category/update/{id}','SubCategoryController@udpate')->name('sub_category_update');
+    Route::post('sub_category/update','SubCategoryController@udpate')->name('sub_category_update');
 
 
 

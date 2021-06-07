@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use DB;
 class NewsController extends Controller
 {
-    
+
     public function All_newspost($id)
-    {	
+    {
 
     	$popular = DB::table('posts')
     			->where('post_id', $id)
@@ -18,6 +18,16 @@ class NewsController extends Controller
            return Redirect('/');
         }else{
     	$data = array();
+
+        //storing date wise post visit start
+         $vistit_data=array(
+             'date' => date('Y-m-d'),
+             'post_id' => $id,
+         );
+        DB::table('post_visit_dates')->insert($vistit_data);
+      //storing date wise post visit end
+
+
     	$data['popular_news'] = $popular->popular_news+1;
     	DB::table('posts')->where('post_id', $id)->update($data);
 
@@ -27,7 +37,7 @@ class NewsController extends Controller
 			 ->where('post_id', $id)
 			 ->first();
 
-			 
+
 		$all_news = DB::table('posts')
 			 ->leftJoin('categorys', 'posts.cat_id', '=', 'categorys.category_id')
 			 ->select('*', 'categorys.category_name')
@@ -56,5 +66,5 @@ class NewsController extends Controller
     }
 
 
-    
+
 }

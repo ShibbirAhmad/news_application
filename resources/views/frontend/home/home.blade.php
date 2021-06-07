@@ -24,15 +24,13 @@
 
                 <div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
 
-                    <div class="exc-area section-margin">
                         <div class="opinion_and">
-
+                         <a href="{{ url('count/advertise/click/'.$advertisements[0]->id) }}">
+                             <img class="advertise_image" src="{{ asset('images/login_logo.png') }}" alt="">
+                            {{-- <img class="img-thumbnail __abc" src=" {{ asset('storage/'.$advertisements[0]->image) }}" alt="news image"> --}}
+                        </a>
                         </div>
-                        <div class="option-cardd">
 
-
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -53,8 +51,10 @@
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 blue">
                             <div class="section-title ">
 
-                                <h3><a href="{{url('/moshadesh/category/'.$nationals->category_id.'/'.$nationals->category_name)}}">{{$nationals->category_name}}</a></h3>
+                              @if ($nationals)
+                                   <h3><a href="{{url('/moshadesh/category/'.$nationals->category_id.'/'.$nationals->category_name)}}">{{$nationals->category_name}}</a></h3>
 
+                              @endif
                             </div>
 
 
@@ -150,7 +150,7 @@
                                         </li>
                                         @endforeach
                                     </ul> --}}
- @foreach($politics_sub as $v_politics_sub)
+                               @foreach($politics_sub as $v_politics_sub)
                                      <div class="sp-warp">
                                 <div class="sp-img">
                                     <a href="{{url('/moshadesh/news/'.$v_politics_sub->post_id)}}">

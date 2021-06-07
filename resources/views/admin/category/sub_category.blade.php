@@ -62,7 +62,6 @@
                                     <th>Status</th>
                                     <th>Action</th>
 
-
                                 </tr>
                             </thead>
 
@@ -73,14 +72,14 @@
 
                                     <td>{{$key+1}}</td>
                                     <td>{{$sub_category->name}}</td>
-                                    <td>{{$sub_category->category->category_name }}</td>
+                                    <td> Category Name </td>
 
                                     <td>
                                         <?php
                                           if ($sub_category->status == 1) {
 
                                             echo "<span class='btn btn-success btn-xs'>active</span>";
-                                          }elseif ($sub_category->cat_status == 2) {
+                                          }elseif ($sub_category->cat_status ==0 ) {
 
                                              echo "<span class='btn btn-danger btn-xs'>de-active</span>";
                                           }?>
@@ -90,7 +89,7 @@
 
                                      <a class="btn btn-sm btn-success" title="Update Category" href="" data-toggle="modal" id="edit" data-category_id="{{$sub_category->id}}"><i class="fa fa-edit"></i></a>
 
-                                <a class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete This !')" href="{{url('sub_category/delete/item/'.$sub_category->id.'/delete')}}"><span class="fa fa-trash"></span>
+                                <a class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete This !')" href="{{url('sub_category/delete/item/'.$sub_category->id)}}"><span class="fa fa-trash"></span>
                                  </a>
                                       </td>
                                 </tr>
@@ -114,10 +113,10 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form id="update_frm" method="post" action="{{url('update-category')}}">
+            <form id="update_frm" method="post" action="{{url('sub_category/update')}}">
                 @csrf
                 <div class="modal-body">
-                    <input type="hidden" name="category_id" id="category_id" value="">
+                    <input type="hidden" name="sub_category_id" id="sub_category_id" >
                     @include('admin.category.sub_category_form')
                 </div>
 
@@ -146,12 +145,11 @@
             var category_id = $(this).data('category_id');
 
            $.get('{{ url('sub_category/edit/item') }}/' + category_id, function(data) {
-
-           $('#update_frm').find('#category_name').val(data.category_name);
-           $('#update_frm').find('#cat_status').val(data.cat_status);
+            console.log(data);
+           $('#update_frm').find('#category_name').val(data.name);
+           $('#update_frm').find('#cat_status').val(data.status);
            $('#update_frm').find('#category_id').val(data.category_id);
-           $('#update_frm').find('#category_position').val(data.category_position);
-
+           $('#update_frm').find('#sub_category_id').val(data.id);
              $('#UpdateCategory').modal('show');
         });
 
