@@ -9,12 +9,12 @@
                     <ol class="breadcrumb">
                         <li><a href="{{url('/')}}"><i class="fa fa-home"></i></a></li>
                         <li><a href="">
-                           
+
                             @foreach($allposts as $v_posts)
                              {{$v_posts->category_name}}
-                           
 
-                           
+
+
                         </a></li>
                     </ol>
                 </div>
@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                  @endforeach
-                              
+
 
                                 <!--col-end-->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
@@ -64,8 +64,8 @@
                                         @endforeach
 
 
-                                       
-                                     
+
+
                                     </div>
                                     <!--row-end-->
                                 </div>
@@ -93,18 +93,18 @@
 
                                 </div>
                                 @endforeach
-                                
-                        
-                             
-                          
-                               
-                               
-                        
-                               
-                                
-                           
-                                
-                             
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
                         <!-- category-it-section end -->
@@ -127,10 +127,10 @@
                             <!-- add-area-one start-->
                             <ul class="nav nav-pills" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ খবর</a>
+                                    <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয় খবর</a>
+                                    <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয়</a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
@@ -138,13 +138,13 @@
                                 <div id="home" class="container tab-pane active">
                                      @foreach($latests as $v_latest)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_latest->post_id)}}">{{str_limit($v_latest->post_title, 80)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
                     </div>
@@ -152,13 +152,13 @@
                     <div id="menu1" class="container tab-pane fade">
                         @foreach($populars as $v_popular)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_popular->post_id)}}">{{str_limit($v_popular->post_title,40)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
                             </div>

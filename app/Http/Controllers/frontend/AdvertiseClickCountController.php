@@ -15,8 +15,7 @@ class AdvertiseClickCountController extends Controller
            $ad=Advertisement::findOrFail($id);
            $ad->click_count = $ad->click_count + 1 ;
            if ($ad->save()) {
-            //    return redirect()->away($ad->url);
-               echo "<script>window.open('".$ad->url."', '_blank')</script>";
+              return response()->json($ad);
            }
     }
 

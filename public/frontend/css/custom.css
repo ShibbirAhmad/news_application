@@ -321,6 +321,12 @@ a {
      position: relative;
  }
 
+ .addvertise_image{
+        cursor: pointer;
+        height: 190px;
+        width: 100%;
+ }
+
 @media screen and (max-width: 991px) {
 
     .border-line {
@@ -385,6 +391,8 @@ a {
    .mega_menu_bar{
        width: 100%;
    }
+
+
 
 }
 

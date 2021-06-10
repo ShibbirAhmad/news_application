@@ -4,7 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
+use Illuminate\Support\Facades\DB;
+use App\Models\Advertisement;
+Use Carbon\Carbon;
 class NewsController extends Controller
 {
 
@@ -47,22 +49,28 @@ class NewsController extends Controller
 
   /******************* Latest News ************************************/
 
-         $latests = DB::table('posts')
-                ->where('latest_news', 1)
-                ->orderBy('latest_news', 'DESC')
-                ->take(10)
-                ->get();
+
+         $latests = DB::table('posts')->orderBy('post_cur_date','desc')->inRandomOrder()->take(10)->get();
 
 
       /************************** Popular News *************************/
 
-        $populars = DB::table('posts')
-                ->orderBy('popular_news', 'DESC')
-                ->take(10)
-                ->get();
+       //filtering latest top 3 news
+          $lastWeek = Carbon::now()->subWeek()->format('Y-m-d');
+          $last_seven_days_post=DB::table('post_visit_dates')->where('date','>=',$lastWeek)
+                                     ->select('post_id',DB::raw('count(*) as id'))
+                                     ->groupBy('post_id')->pluck('post_id');
 
-    	return view('frontend.news.news_page', compact('newsbyid', 'all_news', 'populars', 'latests'));
-    }
+        $populars=DB::table('posts')->whereIn('post_id',$last_seven_days_post)->inRandomOrder()->orderBy('popular_news','desc')->take(10)->get();
+
+
+
+        //advertise ments
+           $advertisements=Advertisement::where('status',1)->inRandomOrder()->get();
+    	 return view('frontend.news.news_page', compact('newsbyid', 'all_news', 'populars', 'latests','advertisements'));
+
+      }
+
     }
 
 

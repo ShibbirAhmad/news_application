@@ -29,8 +29,13 @@ class AdvertisementController extends Controller
             $ad->url=$request->url ;
             $ad->status=$request->status ;
             if ($request->hasFile('image')) {
-                $path=$request->file('image')->store('images/ad_banner','public');
-                $ad->image=$path;
+                $files = $request->file('image');
+                $extension = $files->getClientOriginalExtension();
+                $fileName = str_random(5)."-".date('his')."-".str_random(3).".".$extension;
+                $folderpath = 'public/add_banner/'.date('Y').'/';
+                $image_url = $folderpath.$fileName;
+                $files->move($folderpath , $fileName);
+                $ad->image = $image_url;
             }
 
             if ($ad->save()) {
@@ -79,8 +84,13 @@ class AdvertisementController extends Controller
             $ad->url=$request->url ;
             $ad->status=$request->status ;
             if ($request->hasFile('image')) {
-                $path=$request->file('image')->store('images/ad_banner','public');
-                $ad->image=$path;
+                $files = $request->file('image');
+                $extension = $files->getClientOriginalExtension();
+                $fileName = str_random(5)."-".date('his')."-".str_random(3).".".$extension;
+                $folderpath = 'public/add_banner/'.date('Y').'/';
+                $image_url = $folderpath.$fileName;
+                $files->move($folderpath , $fileName);
+                $ad->image = $image_url;
             }
 
             if ($ad->save()) {

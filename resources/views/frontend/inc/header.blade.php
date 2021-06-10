@@ -12,7 +12,7 @@
                             <button  onclick="toggleMegaMenu()" class="btn "><i class="fa fa-bars desktom_view_menu_icon" aria-hidden="true"></i></button>
                         <a class="header_date" href="{{url('/')}}">{{bn_date(date('d M Y, l'))}}
                            <span><script type="text/javascript"
-                          src="http://bangladate.appspot.com/index2.php"></script>
+                          src=""></script>
                         </span></a>
 
                          </div>
