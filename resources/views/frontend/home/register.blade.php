@@ -15,11 +15,19 @@
                               <img src="{{ asset('images/login_logo.png') }}" alt="">
                                 </a>
                          </div>
+
+                          @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
+
                     </div>
                     <div class="row px-3 mb-5">
 
                     </div>
-
+                   <form action="{{ route('blog_user_register') }}" method="POST" >
+                    @csrf
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Name </h6>
                         </label> <input class="mb-4" type="text" required  name="name" placeholder="Ex: Mohammad">
@@ -38,7 +46,7 @@
                     <div class="row mb-3 px-3 ">
                         <button type="submit" class="btn btn-info btn-block ">Register</button>
                     </div>
-
+                  </form>
                     <div class="row mb-4 px-3"> <small class="font-weight-bold">If have an account? <a href="{{ route('end_user_login') }}" class="text-danger ">Login</a></small> </div>
                 </div>
             </div>

@@ -44,16 +44,16 @@ class SubCategoryController extends Controller
 
 
      public function editItem($id){
-         $sub_categoryvertise=SubCategory::findOrFail($id);
-         return response()->json($sub_categoryvertise);
+         $sub_category=SubCategory::findOrFail($id);
+         return response()->json($sub_category);
         // return view('admin.SubCategory.edit',compact('advertise'));
      }
 
 
 
       public function deleteItem($id){
-         $sub_categoryvertise=SubCategory::findOrFail($id);
-          if ($sub_categoryvertise->delete()) {
+         $sub_category=SubCategory::findOrFail($id);
+          if ($sub_category->delete()) {
             $notification = array(
                     'message' => 'Deleted!',
                     'alert-type' => 'success'
@@ -67,23 +67,20 @@ class SubCategoryController extends Controller
 
 
 
-     public function udpate(Request $request, $id){
+     public function udpate(Request $request){
 
         $validatedData = $request->validate([
+                'c_id' => 'required',
                 'status' => 'required',
             ]);
 
-            $sub_category= SubCategory::findOrFail($id);
-            $sub_category->url=$request->url ;
+            $sub_category= SubCategory::where('id',$request->sub_category_id)->first();
+            $sub_category->category_id=$request->c_id ;
+            $sub_category->name=$request->name ;
             $sub_category->status=$request->status ;
-            if ($request->hasFile('image')) {
-                $path=$request->file('image')->store('images/ad_banner','public');
-                $sub_category->image=$path;
-            }
-
-            if ($sub_category->save()) {
-            $notification = array(
-                    'message' => 'Advertise updated !',
+            if($sub_category->save()) {
+             $notification = array(
+                    'message' => ' updated successfully !',
                     'alert-type' => 'success'
                 );
 

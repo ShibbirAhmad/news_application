@@ -15,7 +15,7 @@
 @section('content')
 
 
-  
+
  <div class="catgory-page-area">
         <div class="container" style="background: #fff;">
             <div class="row">
@@ -44,20 +44,20 @@
                         <!-- single-pg-socile start-->
                         <div class="single-pg-socile">
                             <ul class="list-unstyled text-right">
-                               
+
                              <!-- <li>-->
-                                
+
                              <!--      <div class="fb-share-button" -->
                              <!--     data-href="{{url('/moshadesh/news/'.$newsbyid->post_id)}}"-->
                              <!--       data-layout="button_count">-->
-                               
+
                              <!--   </div>-->
-                                 
+
                              <!--</li>-->
                               <!--   <li>
                                     <a href="https://www.linkedin.com">
                                         <i class="fa fa-linkedin"></i>
-                                    </a> 
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#">
@@ -130,7 +130,7 @@ s.setAttribute('data-timestamp', +new Date());
                                     </div>
                                 </div>
                             </div>
-                       
+
 
                             @endforeach
 
@@ -142,16 +142,28 @@ s.setAttribute('data-timestamp', +new Date());
                 <!--opinion_and start-->
                 <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
                     <div class="sidebar-option-warp" style="overflow: hidden;">
-                        <div class="fb-page fb_iframe_widget"></span></div>
+                        <div class="fb-page fb_iframe_widget"></span>
+
+                          {{-- advertisements --}}
+                       @if (count($advertisements) >= 1)
+                        <div id="ad_info" class="opinion_and">
+                            <a href="{{ $advertisements[0]->url }}" target="_blank" >
+                            <img  class="addvertise_image" id="_ad_click_" src=" {{ asset($advertisements[0]->image) }}" alt="news image">
+                             </a>
+                        </div>
+                       @endif
+                    {{--   advertisements --}}
+
+                        </div>
                         <div class="clearfix"></div>
                         <br>
 
                         <ul class="nav nav-pills" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ খবর</a>
+                                <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয় খবর</a>
+                                <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয়</a>
                             </li>
                         </ul>
 
@@ -160,13 +172,13 @@ s.setAttribute('data-timestamp', +new Date());
                             <div id="home" class="container tab-pane active">
                                 @foreach($latests as $v_latest)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_latest->post_id)}}">{{str_limit($v_latest->post_title, 40)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
                     </div>
@@ -174,18 +186,30 @@ s.setAttribute('data-timestamp', +new Date());
                     <div id="menu1" class="container tab-pane fade">
                         @foreach($populars as $v_popular)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_popular->post_id)}}">{{str_limit($v_popular->post_title,40)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
 
                         </div>
+
+
+
                     </div>
+                      {{-- advertisements --}}
+                       @if (count($advertisements) >= 2)
+                        <div id="ad_info" class="opinion_and">
+                            <a href="{{ $advertisements[1]->url }}" target="_blank" >
+                            <img  class="addvertise_image" id="_ad_click_" src=" {{ asset($advertisements[1]->image) }}" alt="news image">
+                             </a>
+                        </div>
+                       @endif
+                    {{--   advertisements --}}
                      <div id="a-image">
                          @if($newsbyid->post_add_image)
                        <a href="{{$newsbyid->add_image_url  }}" target="_blank">

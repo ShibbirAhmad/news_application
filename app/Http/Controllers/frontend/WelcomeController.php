@@ -4,8 +4,10 @@ namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
-use DB;
+use App\Models\Advertisement;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+Use Carbon\Carbon;
 class WelcomeController extends Controller
 {
 
@@ -447,11 +449,15 @@ class WelcomeController extends Controller
     $gallerys = DB::table('gallerys')->take(6)->where('gallery_status', 1)->orderBy('id', 'DESC')->get();
 
 
-
-
       //filtering latest top 3 news
-        $most_view_news=DB::table('posts')->inRandomOrder()->take(3)->orderBy('popular_news','desc')->get();
+          $lastWeek = Carbon::now()->subWeek()->format('Y-m-d');
+          $last_seven_days_post=DB::table('post_visit_dates')->where('date','>=',$lastWeek)
+                                     ->select('post_id',DB::raw('count(*) as id'))
+                                     ->groupBy('post_id')->pluck('post_id');
 
+        $most_view_news=DB::table('posts')->whereIn('post_id',$last_seven_days_post)->inRandomOrder()->orderBy('popular_news','desc')->take(3)->get();
+         //collecting advertisement
+        $advertisements=Advertisement::where('status',1)->inRandomOrder()->get();
 
     	 return view('frontend.home.home', compact(['nationals',
          'politics', 'nationals_head', 'nationals_sub', 'politics_head',
@@ -465,7 +471,8 @@ class WelcomeController extends Controller
              'diversenews_sub', 'crimecorruption', 'crimecorruption_head',
               'crimecorruption_sub', 'information', 'information_head',
                'information_sub', 'health', 'health_head', 'health_sub',
-               'topcat', 'top_sub', 'sliders', 'covernews', 'gallerys','most_view_news']));
+               'topcat', 'top_sub', 'sliders', 'covernews', 'gallerys',
+               'most_view_news','advertisements']));
     }
 
     public function AnyCategoryname($id, $category_name)

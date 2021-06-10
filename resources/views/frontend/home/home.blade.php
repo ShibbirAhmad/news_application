@@ -13,7 +13,7 @@
                            <a style="color:#000" href="{{url('/moshadesh/news/'.$post->post_id)}}">
                               <img class="img-thumbnail" src="{{ asset($post->post_image) }}" alt="news image">
                                <h4 class="top_news_heading"> {{ $post->post_title }} </h4>
-                               <p class="top_news_description"> {!!  str_limit($post->short_description,200) !!} </p>
+                               <p class="top_news_description"> {!!  str_limit($post->short_description,100) !!} </p>
                              </a>
                            </div>
                        @endforeach
@@ -23,16 +23,15 @@
 
 
                 <div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
-
-                    <div class="exc-area section-margin">
+                     {{-- advertisements --}}
+                    @if ( count($advertisements) >= 1 )
                         <div class="opinion_and">
-
+                            <a href="{{ $advertisements[0]->url }}" target="_blank" >
+                            <img  class="addvertise_image"  src=" {{ asset($advertisements[0]->image) }}" alt="news image">
+                             </a>
                         </div>
-                        <div class="option-cardd">
-
-
-                        </div>
-                    </div>
+                    @endif
+                 {{-- advertisements --}}
                 </div>
             </div>
 
@@ -53,8 +52,10 @@
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 blue">
                             <div class="section-title ">
 
-                                <h3><a href="{{url('/moshadesh/category/'.$nationals->category_id.'/'.$nationals->category_name)}}">{{$nationals->category_name}}</a></h3>
+                              @if ($nationals)
+                                   <h3><a href="{{url('/moshadesh/category/'.$nationals->category_id.'/'.$nationals->category_name)}}">{{$nationals->category_name}}</a></h3>
 
+                              @endif
                             </div>
 
 
@@ -150,7 +151,7 @@
                                         </li>
                                         @endforeach
                                     </ul> --}}
- @foreach($politics_sub as $v_politics_sub)
+                               @foreach($politics_sub as $v_politics_sub)
                                      <div class="sp-warp">
                                 <div class="sp-img">
                                     <a href="{{url('/moshadesh/news/'.$v_politics_sub->post_id)}}">
@@ -227,19 +228,7 @@
                             <a href="{{url('/moshadesh/category/'.$exclusivebyid->category_id.'/'.$exclusivebyid->category_name)}}">{{$exclusivebyid->category_name}} </a>
                         </div>
                         <div class="option-cardd">
-                            {{-- <ul class="list-unstyled">
 
-                                @foreach($excluive_head as $v_excluive)
-                                <li>
-                                    <a href="{{url('/moshadesh/news/'.$v_excluive->post_id)}}">
-                                        <img src="{{asset($v_excluive->post_image)}}" alt="" class="img-fluid">
-                                        <p>{{$v_excluive->post_title}}</p>
-                                    </a>
-                                </li>
-
-                                @endforeach
-
-                            </ul> --}}
                              @foreach($excluive_head as $v_excluive)
 
                              <div class="sp-warp">
@@ -259,6 +248,15 @@
 
                             @endforeach
                         </div>
+                 {{-- advertisements --}}
+                    @if ( count($advertisements) >= 2 )
+                         <div id="ad_info" class="opinion_and">
+                            <a href="{{ $advertisements[1]->url }}" target="_blank" >
+                            <img  class="addvertise_image" id="_ad_click_" src=" {{ asset($advertisements[1]->image) }}" alt="news image">
+                             </a>
+                        </div>
+                    @endif
+                  {{-- advertisements --}}
                     </div>
                 </div>
             </div>
@@ -352,7 +350,15 @@
                     @endforeach
 
 
-
+             {{-- advertisements --}}
+                    @if ( count($advertisements) >= 4 )
+                        <div id="ad_info" class="opinion_and">
+                            <a href="{{ $advertisements[2]->url }}" target="_blank" >
+                            <img  class="addvertise_image" id="_ad_click_" src=" {{ asset($advertisements[2]->image) }}" alt="news image">
+                            </a>
+                        </div>
+                    @endif
+            {{-- advertisements --}}
 
 
                 </div>
@@ -443,9 +449,15 @@
                         @endforeach
 
 
-
-
-
+                 {{-- advertisements --}}
+                     @if ( count($advertisements) >= 3 )
+                          <div id="ad_info" class="opinion_and">
+                            <a href="{{ $advertisements[2]->url }}" target="_blank" >
+                            <img  class="addvertise_image" id="_ad_click_" src=" {{ asset($advertisements[2]->image) }}" alt="news image">
+                             </a>
+                        </div>
+                     @endif
+               {{-- advertisements --}}
                     </div>
                 </div>
                 <!--col-md-3-->
@@ -477,6 +489,8 @@
                                 </div>
                             </div>
                             @endforeach
+
+
                         </div>
                         <div class="col-lg-5">
                             @foreach($entertainment_head as $v_entertainment_head)
@@ -500,7 +514,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="section-margin" style="position: absolute;
-        width: 255px;margin-top:-43px;">
+                               width: 255px;margin-top:-43px;">
                                 <div class="cardd-4-title section-title section-title-2">
                                     <h3><a href="{{url('/moshadesh/category/'.$lifestyle->category_id.'/'.$lifestyle->category_name)}}">{{$lifestyle->category_name}}</a></h3>
                                 </div>
@@ -521,6 +535,8 @@
 
                                 @endforeach
 
+
+
                             </div>
                         </div>
 
@@ -528,65 +544,7 @@
                     </div>
                     </div>
 
-                {{-- <div class="col-xl-9 col-lg-9 col-md-12 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="cardd-4-title section-title ">
-                                <h3><a href="{{url('/moshadesh/category/'.$entertainment->category_id.'/'.$entertainment->category_name)}}">{{$entertainment->category_name}}</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
-                            @foreach($entertainment_sub as $v_entertainment_sub)
-                            <div class="sp-warp">
-                                <div class="sp-img">
-                                    <a href="{{url('/moshadesh/news/'.$v_entertainment_sub->post_id)}}">
-                                        <img src="{{asset($v_entertainment_sub->post_image)}}" alt="" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="sp-text">
-                                    <h3>
-                                        <a href="{{url('/moshadesh/news/'.$v_entertainment_sub->post_id)}}">{{$v_entertainment_sub->post_title}}</a>
-                                    </h3>
-                                </div>
-                            </div>
-                            @endforeach
 
-
-
-
-
-                        </div>
-                        <!--col-end-->
-
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
-                            @foreach($entertainment_head as $v_entertainment_head)
-                            <div class="sp-top-post">
-                                <div class="sp-tp-img">
-                                    <a href="{{url('/moshadesh/news/'.$v_entertainment_head->post_id)}}">
-                                        <img src="{{asset($v_entertainment_head->post_image)}}" alt="" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="sp-caption">
-                                    <h2>
-                                        <a href="{{url('/moshadesh/news/'.$v_entertainment_head->post_id)}}">{{$v_entertainment_head->post_title}}</a>
-                                    </h2>
-                                    <p>
-                                        <a href="{{url('/moshadesh/news/'.$v_entertainment_head->post_id)}}">{!! str_limit($v_entertainment_head->short_description, 200)!!}
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        <!--col-end-->
-                    </div>
-
-                </div> --}}
-                <!--col-9 end-->
-
-                <!--col-md-3-->
             </div>
         </div>
         <section class="cardd-area-six">
@@ -966,3 +924,5 @@
 }
 </style>
     @endsection
+
+

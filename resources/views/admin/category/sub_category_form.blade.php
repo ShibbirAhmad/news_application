@@ -7,7 +7,7 @@
    ?>
    <div class="form-group">
     <label for="status">Select Category </label>
-     <select class="form-control" name="c_id" required >
+     <select class="form-control" id="category_id" name="c_id" required >
           <option value="">-- Select Category --</option>
           @foreach ($categories as $item)
               <option value="{{ $item->category_id }}">{{ $item->category_name }}</option>

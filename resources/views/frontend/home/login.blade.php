@@ -15,13 +15,20 @@
                               <img src="{{ asset('images/login_logo.png') }}" alt="">
                                 </a>
                          </div>
+                            @if(session()->has('message'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
                     </div>
                     <div class="row px-3 mb-5">
 
                     </div>
+                    <form action="{{ route('blog_user_login') }}" method="POST">
+                        @csrf
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
-                        </label> <input class="mb-4" type="text" name="email" required placeholder="Enter your email"> </div>
+                        </label> <input class="mb-4" type="text" name="email"  placeholder="Enter your email"> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Password</h6>
                         </label> <input type="password" name="password"  required placeholder="Enter password"> </div>
@@ -32,6 +39,8 @@
                         <div class="col-md-5 col-sm-5">
                                 <button type="submit" class="btn btn-blue text-center">Login</button>
                         </div>
+                    </form>
+
                         <div class="col-md-7 col-sm-7">
                              <div class="socilate_login">
                                   <h6 class="mt-2 mr-3" >Sign in with</h6>

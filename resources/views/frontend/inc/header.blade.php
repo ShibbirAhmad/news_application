@@ -1,3 +1,6 @@
+
+
+
 <section class="topbar-three">
         <div class="container heder_container">
             <div class="row header_row" >
@@ -6,10 +9,10 @@
                        <div class="col-md-4">
 
                         <div class="day_container">
-                            <button class="btn   "><i class="fa fa-bars desktom_view_menu_icon" aria-hidden="true"></i></button>
-                        <a href="{{url('/')}}">{{bn_date(date('d M Y, l'))}}
+                            <button  onclick="toggleMegaMenu()" class="btn "><i class="fa fa-bars desktom_view_menu_icon" aria-hidden="true"></i></button>
+                        <a class="header_date" href="{{url('/')}}">{{bn_date(date('d M Y, l'))}}
                            <span><script type="text/javascript"
-                          src="http://bangladate.appspot.com/index2.php"></script>
+                          src=""></script>
                         </span></a>
 
                          </div>
@@ -25,7 +28,7 @@
                         </div>
                        <div class="col-md-4">
                          <!--header-address-->
-                            <div class="header-search">
+                            <div id="header_search_bar" class="header-search">
                                 <form method="get" action="{{url('news-search')}}">
                                     @csrf
                                     <div class="input-group">
@@ -37,7 +40,24 @@
                             </div>
                      </div>
                      <div class="col-md-2 col-sm-2">
-                         <button class="btn login_button "><a href="{{ route('end_user_login') }}">Login</a></button>
+                      @if (Session::has('blog_user'))
+                    <div class="dropdown  user_dropdown">
+                      <button class="btn d_user_button dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       {{ session::get('blog_user')->name }}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button">Dashboard</button>
+                        <button class="dropdown-item  logout_btn" type="button"> <a href="{{ route('blog_user_logout') }}">  Logout  </a> </button>
+                      </div>
+                    </div>
+
+                      @else
+                        <i onclick="toggleSearchBar()" class="fa fa-search mobile_search_icon"> </i>
+                       <a  href="{{ route('end_user_login') }}"> <i class="fa fa-user login_icon"> </i>  </a>
+                      @endif
+
+
+
                      </div>
 
                 </div>
@@ -51,29 +71,47 @@
 	<div class="container-fluid navbar_container "  >
    <div class="container ">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" data-toggle="sticky-onscroll">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
+   <?php
+
+      //filtering category
+      $category_position_count = DB::table('categorys')->where('cat_status', 1)->sum('category_position');
+      if($category_position_count > 0){
+           $all_menus=DB::table('categorys')->orderBy('category_position','DESC')->take(12)->get();
+      }else{
+
+            $most_view_posts_categorys=DB::table('posts')
+                                    ->orderBy('popular_news','desc')
+                                    ->take(50)
+                                    ->select('cat_id',DB::raw('count(*) as id'))
+                                    ->groupBy('cat_id')->pluck('cat_id') ;
+            $all_menus=DB::table('categorys')->whereIn('category_id',$most_view_posts_categorys)->take(12)->get();
+      }
+   ?>
 
   {{-- nav-bar-menu start hjere--}}
-       <div class="mega_menu_bar">
-         <i class="fa fa-times-circle menu_close_icon"></i>
+       <div class="mega_menu_bar" id="__mega_menu_bar">
+         <i onclick="toggleMegaMenu()"  class="fa fa-times-circle menu_close_icon"></i>
           <ul class="menu_list_c">
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
-            <li> <a href="">   Top News </a> </li>
+            @foreach ($all_menus as $item)
+               <li> <a href="{{url('/moshadesh/category/'.$item->category_id.'/'.$item->category_name)}}">{{$item->category_name}}</a>
+                  {{-- sub_category start  --}}
+                   {{-- <i class="fa fa-angle-down"> </i>
+                   <ul>
+                    <li><a href=""></a></li>
+                  </ul> --}}
+               {{-- sub_category end  --}}
+              </li>
+            @endforeach
+
           </ul>
+
+          <div class="menu_social_container">
+            <a href=""> <i class="fa fa-facebook menu_social_icon"></i> </a>
+            <a href=""> <i class="fa fa-youtube menu_social_icon"></i> </a>
+            <a href=""> <i class="fa fa-linkedin menu_social_icon"></i> </a>
+          </div>
+
        </div>
   {{-- nav-bar-menu end --}}
 
@@ -85,21 +123,6 @@
       </li> --}}
 
        <?php
-
-            //filtering category
-      $category_position_count = DB::table('categorys')->where('cat_status', 1)->sum('category_position');
-      if($category_position_count > 0){
-           $all_menus=DB::table('categorys')->orderBy('category_position','DESC')->take(12)->get();
-      }else{
-
-            $most_view_posts_categories=DB::table('posts')
-                                    ->orderBy('popular_news','desc')
-                                    ->take(50)
-                                    ->select('cat_id',DB::raw('count(*) as id'))
-                                    ->groupBy('cat_id')->pluck('cat_id') ;
-            $all_menus=DB::table('categorys')->whereIn('category_id',$most_view_posts_categories)->take(12)->get();
-      }
-
 
               foreach ($all_menus as $value) {
 
@@ -140,4 +163,18 @@
 </div>
 </div>
 
+
+<script type="text/javascript" >
+
+  function toggleMegaMenu() {
+    document.getElementById("__mega_menu_bar").classList.toggle('_mega_menu_toggle');
+  }
+
+ function toggleSearchBar(){
+          document.getElementById('header_search_bar').classList.toggle('header_tog_class');
+ }
+
+
+
+</script>
 

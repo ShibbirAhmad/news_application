@@ -14,9 +14,9 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function post_list()
-    {	
+    {
     	$categorys = DB::table('categorys')
     			->select('categorys.category_id', 'categorys.category_name')
     			->get();
@@ -26,7 +26,7 @@ class PostController extends Controller
     			 ->select('*', 'categorys.category_name')
     			->orderBy('post_id', 'DESC')
     			->paginate(20);
-    	return view('admin.post.post_list', compact('categorys', 'posts'));	
+    	return view('admin.post.post_list', compact('categorys', 'posts'));
     }
 
     public function Store_post(Request $request)
@@ -37,11 +37,12 @@ class PostController extends Controller
     	$data = array(
     		'post_title' => $request->post_title,
     		'cat_id' => $request->category_id,
+    		'sub_category_id' => $request->sub_category_id ?? null,
     		'short_description' => $request->short_description,
     		'long_description' => $request->long_description,
-        'position' => $request->position,
-        'latest_news' => $request->latest_news,
-        'cover_news' => $request->cover_news,
+            'position' => $request->position,
+             'latest_news' => $request->latest_news,
+             'cover_news' => $request->cover_news,
     		'breaking_news' => $request->breaking_news,
     		'post_status' => $request->post_status,
     		'post_cur_date' => bn_date(date('d M Y, H:i')),
@@ -56,17 +57,17 @@ class PostController extends Controller
 	          $folderpath = 'public/news/post/'.date('Y').'/';
 	          $image_url = $folderpath.$fileName;
 	          $files->move($folderpath , $fileName);
-	          $data['post_image'] = $image_url; 
+	          $data['post_image'] = $image_url;
 
          }
          $insert = DB::table('posts')->insert($data);
      	 if ($insert) {
             $notification = array(
-                    'message' => 'New Post Added Successfully !', 
+                    'message' => 'New Post Added Successfully !',
                     'alert-type' => 'success'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -76,9 +77,8 @@ class PostController extends Controller
     public function Edit_post($id)
     {
         $categorys = DB::table('categorys')
-                ->select('categorys.category_id', 'categorys.category_name')
+                ->where('cat_status',1)
                 ->get();
-
 
        $editbypost = DB::table('posts')
                     ->where('post_id', $id)
@@ -92,6 +92,7 @@ class PostController extends Controller
         $data = array(
             'post_title' => $request->post_title,
             'cat_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id ?? null,
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'position' => $request->position,
@@ -108,7 +109,7 @@ class PostController extends Controller
                ->select('post_image')
                ->where('post_id', $id)
                ->first();
-               
+
                 if($request->hasFile('add_image')){
                     $add_image_files = $request->file('add_image');
                     $extensions = $add_image_files->getClientOriginalExtension();
@@ -141,11 +142,11 @@ class PostController extends Controller
 
               if ($update) {
             $notification = array(
-                    'message' => 'Post Updated Successfully !', 
+                    'message' => 'Post Updated Successfully !',
                     'alert-type' => 'info'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -158,11 +159,11 @@ class PostController extends Controller
                      ->update($data);
              if ($update) {
             $notification = array(
-                    'message' => 'Post Updated Successfully !', 
+                    'message' => 'Post Updated Successfully !',
                     'alert-type' => 'info'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -177,11 +178,11 @@ class PostController extends Controller
                      ->update($data);
           if ($update) {
             $notification = array(
-                    'message' => 'Post Updated Successfully !', 
+                    'message' => 'Post Updated Successfully !',
                     'alert-type' => 'info'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -206,27 +207,27 @@ class PostController extends Controller
                     ->delete();
         if ($delpost) {
             $notification = array(
-                    'message' => 'Post Deleted Successfully !', 
+                    'message' => 'Post Deleted Successfully !',
                     'alert-type' => 'warning'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
 
        } else {
-           
+
         $delpost = DB::table('posts')
                     ->where('post_id', $id)
                     ->delete();
         if ($delpost) {
             $notification = array(
-                    'message' => 'Post Deleted Successfully !', 
+                    'message' => 'Post Deleted Successfully !',
                     'alert-type' => 'warning'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -243,11 +244,11 @@ class PostController extends Controller
                 ->update(['latest_news' => NULL]);
         if ($nopost) {
             $notification = array(
-                    'message' => 'Letest News No Successfully !', 
+                    'message' => 'Letest News No Successfully !',
                     'alert-type' => 'warning'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -261,11 +262,11 @@ class PostController extends Controller
                 ->update(['latest_news' => 1]);
         if ($nopost) {
             $notification = array(
-                    'message' => 'Letest News Yes Successfully !', 
+                    'message' => 'Letest News Yes Successfully !',
                     'alert-type' => 'success'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -278,11 +279,11 @@ class PostController extends Controller
                 ->update(['cover_news' => NULL]);
         if ($cover) {
             $notification = array(
-                    'message' => 'Cover News No Successfully !', 
+                    'message' => 'Cover News No Successfully !',
                     'alert-type' => 'warning'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -295,11 +296,11 @@ class PostController extends Controller
                 ->update(['cover_news' => 1]);
         if ($coveryes) {
             $notification = array(
-                    'message' => 'Cover News Yes Successfully !', 
+                    'message' => 'Cover News Yes Successfully !',
                     'alert-type' => 'success'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -313,11 +314,11 @@ class PostController extends Controller
                 ->update(['breaking_news' => NULL]);
         if ($cover) {
             $notification = array(
-                    'message' => 'Breaking News No Successfully !', 
+                    'message' => 'Breaking News No Successfully !',
                     'alert-type' => 'warning'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }
@@ -330,11 +331,11 @@ class PostController extends Controller
                 ->update(['breaking_news' => 1]);
         if ($coveryes) {
             $notification = array(
-                    'message' => 'Breaking News Yes Successfully !', 
+                    'message' => 'Breaking News Yes Successfully !',
                     'alert-type' => 'success'
                 );
 
-        return Redirect()->route('posts')->with($notification);    
+        return Redirect()->route('posts')->with($notification);
         }else{
                return back();
          }

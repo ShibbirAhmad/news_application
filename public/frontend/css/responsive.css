@@ -1,17 +1,17 @@
 /*!
- 
+
   * Main Css
   Author : khokon Ahmed
   copy-right: 2018
   softwarefirmbd.com
-  
+
  */
 
 
 @media (min-width: 360px) and (max-width: 640px){
      .container {
          max-width: 1170px;
-     }   
+     }
      .img-thumbnail{
           margin:0 auto;
           max-height: 1000px!important;
@@ -26,14 +26,14 @@
      display: none;
 }
 .home-logo img {
-    width: 65%;
-    margin-left: 18%;
+    width: 78%;
+    margin-left: -7%;
 }
 .topbar-three .header-socile ul {
   display: none;
 }
-.input-group .form-control { 
-    margin-left: -36%; 
+.input-group .form-control {
+    margin-left: -36%;
 }
 .photo_gallery .gallery_img_style{
      margin-top: 5%;

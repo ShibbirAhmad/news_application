@@ -83,7 +83,7 @@
                                     <td>{{$key++}}</td>
                                     <td>{{$advertise->url}}</td>
                                     <td>
-                                         <img src="{{ asset('storage/'.$advertise->image) }}" alt="add image"/>
+                                         <img src="{{ asset($advertise->image) }}" alt="add image"/>
                                     </td>
                                       <td>  {{ $advertise->click_count }} </td>
                                          <td>

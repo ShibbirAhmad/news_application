@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 use Auth;
 use DB;
 class HomeController extends Controller
@@ -27,12 +28,12 @@ class HomeController extends Controller
     {
                    $top_20_posts=DB::table('posts')->select('popular_news','post_title','post_cur_date','post_id')->orderBy('popular_news','desc')->take(20)->get();
 
-         
+
          return view('admin.home.home',compact('top_20_posts'));
     }
 
     public function Userprofile($id)
-    {   
+    {
        $profiles = Auth::user();
        return view('admin.home.userprofile', compact('profiles'));
     }
@@ -57,26 +58,31 @@ class HomeController extends Controller
        }else{
         $request->user()->fill(['id'=>$id, 'name'=>$name, 'email'=>$email,'password'=>Hash::make($newpassword)])->save();
          return redirect('/user-profile/'.$id)->with('success', 'Profile Updated Successfully');
-       } 
+       }
     }
-    
-    
+
+
     public function ckEditorUpload(Request $request){
         $originName = $request->file('upload')->getClientOriginalName();
      $fileName = pathinfo($originName, PATHINFO_FILENAME);
      $extension = $request->file('upload')->getClientOriginalExtension();
      $fileName = $fileName.'_'.time().'.'.$extension;
-    
+
      $request->file('upload')->move(public_path('images'), $fileName);
 
      $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-     $url = asset('public/images/'.$fileName); 
-     $msg = 'Image uploaded successfully'; 
+     $url = asset('public/images/'.$fileName);
+     $msg = 'Image uploaded successfully';
      $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-           
-     @header('Content-type: text/html; charset=utf-8'); 
+
+     @header('Content-type: text/html; charset=utf-8');
      echo $response;
     }
 
-    
+
+
+
+
+
+
 }

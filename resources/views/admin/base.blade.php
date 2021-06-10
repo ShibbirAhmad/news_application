@@ -9,44 +9,22 @@
     <title>Mohadesh.com</title>
     <!-- GLOBAL MAINLY STYLES-->
 
-    <link href="{{asset('admin/assets/')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{{asset('admin/assets/')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="{{asset('admin/assets/')}}/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
-    <link href="{{asset('admin/assets/')}}/vendors/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/vendors/bootstrap/dist/css/bootstrap.min.css') }} " rel="stylesheet" />
+    <link href="{{asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/vendors/themify-icons/css/themify-icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-    <link href="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+
 
      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!-- THEME STYLES-->
     <link href="https://fonts.maateen.me/adorsho-lipi/font.css" rel="stylesheet">
-    <link href="{{asset('admin/assets/')}}/css/main.min.css" rel="stylesheet" />
+    <link href="{{asset('admin/assets/css/main.min.css')}}" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
 
-    <script src="{{asset('admin/assets/')}}/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
 
-    <!--<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>-->
-        <script src="{{asset('admin/assets/')}}/vendors/ckeditor/ckeditor.js" type="text/javascript"></script>
-
-
-
-    <script src="{{asset('admin/assets/')}}/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- PAGE LEVEL PLUGINS-->
-    <script src="{{asset('admin/assets/')}}/vendors/chart.js/dist/Chart.min.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-    <script src="{{asset('admin/assets/')}}/vendors/jvectormap/jquery-jvectormap-us-aea-en.js" type="text/javascript"></script>
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-      <script src="{{asset('admin/assets/')}}/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
-    <!-- CORE SCRIPTS-->
-    <script src="{{asset('admin/assets/')}}/js/app.min.js" type="text/javascript"></script>
-    <!-- PAGE LEVEL SCRIPTS-->
+    <script src="{{asset('admin/assets/vendors/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
 
 
 </head>
@@ -117,8 +95,10 @@
             </div>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2018 © <b>Softwarefirmbd</b> - All rights reserved.</div>
-                <a class="px-4" href="" target="_blank">Softwarefirmbd.com</a>
+                <div class="font-13"> @php
+                    date('Y');
+                @endphp © <b>Mohasagor It Solution</b> - All rights reserved.</div>
+                <a class="px-4" href="https://mohasagor.com" target="_blank">mohasagor.com</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
@@ -193,6 +173,22 @@
                   filebrowseUploadMethod:'form'
             });
         </script>
+
+
+
+    <script src="{{asset('admin/assets/vendors/popper.js/dist/umd/popper.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/vendors/metisMenu/dist/metisMenu.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('admin/assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="{{asset('admin/assets/vendors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+
+      <script src="{{asset('admin/assets/vendors/DataTables/datatables.min.js')}} " type="text/javascript"></script>
+    <!-- CORE SCRIPTS-->
+    <script src="{{asset('admin/assets/js/app.min.js')}}" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS-->
 
 </body>
 

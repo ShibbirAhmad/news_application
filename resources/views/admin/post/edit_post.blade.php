@@ -6,13 +6,15 @@
                          @csrf
 
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-12">
       <div class="form-group">
         <label for="post_title">Post Title</label>
         <input type="text" class="form-control" id="post_title" name="post_title" value="{{$editbypost->post_title}}">
       </div>
   </div>
-
+ <?php
+	       $sub_categories = DB::table('sub_categories')->where('status',1)->get();
+	   ?>
     <div class="col-sm-6">
       <div class="form-group">
         <label for="category_id">Category Name</label>
@@ -24,7 +26,23 @@
         </select>
       </div>
        </div>
-    
+
+        <div class="col-sm-6">
+		  <div class="form-group">
+		    <label for="category_id">Sub Category </label>
+		    <select class="form-control" name="sub_category_id" id="sub_category_id" >
+		    	<option value="">--Select Sub Category --</option>
+		    	@foreach($sub_categories as $sub_category)
+		    	<option value="{{$sub_category->id}}"
+              @if ($sub_category->id==$editbypost->sub_category_id)
+               selected
+            @endif
+            >{{$sub_category->name}}</option>
+		    	@endforeach
+		    </select>
+		  </div>
+	     </div>
+
       <div class="col-sm-12">
       <div class="form-group">
         <label for="post_title">Short Description</label>
@@ -75,30 +93,30 @@
 
       <div class="form-group">
        <div class="add-image">
-          <label>Add Image</label> 
+          <label>Add Image</label>
            <input type="file"  name="add_image" class="form-control" id="add_image" />
 
            <br>
            @if(!empty($editbypost->post_add_image))
             <img src="{{ asset($editbypost->post_add_image) }}" id="p_add_image" />
-        
+
            @endif
               @if(empty($editbypost->post_add_image))
             <img src="" id="p_add_image" />
-        
+
            @endif
-           
+
             <div class="form-group">
              <label>Url</label>
            <input name="post_add_image_url" value="{{ $editbypost->add_image_url }}" type="text" class="form-control"/>
            </div>
-                      
 
-           
+
+
        </div>
       </div>
        </div>
-    
+
       <div class="col-sm-3">
       <div class="form-group">
         <label for="post_status">Status</label>
@@ -117,10 +135,10 @@
       <label class="form-check-label">
         <?php
           if ($editbypost->breaking_news == 1) { ?>
-        <input type="checkbox" class="form-check-input" name="breaking_news" checked="checked" value="1"> breaking News 
+        <input type="checkbox" class="form-check-input" name="breaking_news" checked="checked" value="1"> breaking News
         <?php }else{ ?>
- <input type="checkbox" class="form-check-input" name="breaking_news" value="1"> breaking News 
-          <?php  } ?> 
+ <input type="checkbox" class="form-check-input" name="breaking_news" value="1"> breaking News
+          <?php  } ?>
       </label>
     </div>
       </div>
@@ -134,12 +152,12 @@
       <label class="form-check-label">
         <?php
           if ($editbypost->latest_news == 1) { ?>
-          
+
     <input type="checkbox" class="form-check-input" id="latest_news" name="latest_news" checked="checked" value="1"> Latest News
 
     <?php }else{ ?>
       <input type="checkbox" class="form-check-input" id="latest_news" name="latest_news" value="1"> Latest News
-   <?php  } ?> 
+   <?php  } ?>
       </label>
     </div>
       </div>
@@ -153,10 +171,10 @@
         <?php
           if ($editbypost->cover_news == 1) { ?>
 
-        <input type="checkbox" class="form-check-input" name="cover_news" checked="checked" value="1"> Cover News 
+        <input type="checkbox" class="form-check-input" name="cover_news" checked="checked" value="1"> Cover News
          <?php }else{ ?>
     <input type="checkbox" class="form-check-input" name="cover_news" value="1"> Cover News
-          <?php  } ?> 
+          <?php  } ?>
       </label>
     </div>
       </div>
@@ -171,7 +189,7 @@
     document.forms['editform'].elements['category_id'].value={{$editbypost->cat_id}}
     document.forms['editform'].elements['position'].value={{$editbypost->position}}
     document.forms['editform'].elements['post_status'].value={{$editbypost->post_status}}
-    
+
     $(document).ready(function() {
 
       let element=document.getElementById('cke_1_top')
@@ -195,11 +213,11 @@
       reader.onload = (evt) => {
         let img = new Image();
         img.onload = () => {
-          
+
           if (img.width <= 350 && img.height <= 950) {
             $("#p_add_image").attr('src',evt.target.result)
              $("#update_news").attr('disabled',false)
-            return 
+            return
           } else {
             $("#update_news").attr('disabled',true)
             alert("image max size 350*950px");

@@ -39,7 +39,7 @@
                                 <li>
                                     <a href="https://www.linkedin.com">
                                         <i class="fa fa-linkedin"></i>
-                                    </a> 
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#">
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                       
+
 
                             @endforeach
 
@@ -104,10 +104,10 @@
 
                         <ul class="nav nav-pills" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ খবর</a>
+                                <a class="nav-link active" data-toggle="pill" href="#home">সর্বশেষ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয় খবর</a>
+                                <a class="nav-link" data-toggle="pill" href="#menu1">জনপ্রিয় </a>
                             </li>
                         </ul>
 
@@ -116,13 +116,13 @@
                             <div id="home" class="container tab-pane active">
                                 @foreach($latests as $v_latest)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_latest->post_id)}}">{{str_limit($v_latest->post_title, 40)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
                     </div>
@@ -130,13 +130,13 @@
                     <div id="menu1" class="container tab-pane fade">
                         @foreach($populars as $v_popular)
                         <ul class="pillsing">
-                            
+
                             <li>
                                 <a href="{{url('/moshadesh/news/'.$v_popular->post_id)}}">{{str_limit($v_popular->post_title,40)}}</a>
                             </li>
-                           
 
-                            
+
+
                         </ul>
                          @endforeach
 
